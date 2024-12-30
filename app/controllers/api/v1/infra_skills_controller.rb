@@ -5,7 +5,7 @@ module Api
 
       def index
         infra_skills = InfraSkill.order(created_at: :desc)
-        render json: { status: 'SUCCESS', message:  data: infra_skills }
+        render json: { status: 'SUCCESS', data: infra_skills }
       end
 
       def show
