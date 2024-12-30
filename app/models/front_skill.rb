@@ -1,0 +1,2 @@
+class FrontSkill < ApplicationRecord
+end

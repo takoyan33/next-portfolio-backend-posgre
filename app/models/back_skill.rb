@@ -1,0 +1,2 @@
+class BackSkill < ApplicationRecord
+end

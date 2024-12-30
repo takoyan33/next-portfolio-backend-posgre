@@ -1,0 +1,2 @@
+class OtherSkill < ApplicationRecord
+end
