@@ -1,4 +1,4 @@
-FROM ruby:3.1
+FROM ruby:3.2.6
 
 ENV TZ=Asia/Tokyo
 ARG RUBYGEMS_VERSION=3.3.20
