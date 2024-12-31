@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Jobs", type: :request do
+RSpec.describe "Api::V1::Portfolios", type: :request do
 
-  describe "GET /api/v1/jobs" do
-    it "returns a list of jobs" do
-      get "/api/v1/licenses"
+  describe "GET /api/v1/portfolios" do
+    it "returns a list of portfolios" do
+      get "/api/v1/portfolios"
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
       # データに取得失敗
@@ -12,38 +12,39 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     end
   end
 
-  # describe "GET /api/v1/jobs/:id" do
-  #   context "when the job exists" do
-  #     it "returns the job" do
-  #       get "/api/v1/jobs/#{job_id}"
+  # describe "GET /api/v1/portfolios/:id" do
+  #   context "when the portfolios exists" do
+  #     it "returns the portfolios" do
+  #       get "/api/v1/portfolios/1"
   #       expect(response).to have_http_status(:success)
-  #       data = JSON.parse(response.body)['data']
-  #       expect(data['id']).to eq(job_id)
+  #       # data = JSON.parse(response.body)['data']
+  #       # expect(data['id']).to eq(job_id)
   #     end
   #   end
+  # end
 
-  #   context "when the job does not exist" do
+  #   context "when the portfolios does not exist" do
   #     it "returns a 404 not found" do
-  #       get "/api/v1/jobs/99999"
+  #       get "/api/v1/portfolios/99999"
   #       expect(response).to have_http_status(:not_found)
   #     end
   #   end
   # end
 
-  # describe "POST /api/v1/jobs" do
+  # describe "POST /api/v1/portfolios" do
   #   context "with valid parameters" do
-  #     it "creates a new job" do
+  #     it "creates a new portfolios" do
   #       expect {
-  #         post "/api/v1/jobs", params: { job: valid_attributes }
+  #         post "/api/v1/portfolios", params: { portfolios: valid_attributes }
   #       }.to change(Job, :count).by(1)
   #       expect(response).to have_http_status(:success)
   #     end
   #   end
 
   #   context "with invalid parameters" do
-  #     it "does not create a new job" do
+  #     it "does not create a new portfolios" do
   #       expect {
-  #         post "/api/v1/jobs", params: { job: invalid_attributes }
+  #         post "/api/v1/portfolios", params: { portfolios: invalid_attributes }
   #       }.not_to change(Job, :count)
   #       expect(response).to have_http_status(:success) # 実際のステータスが`SUCCESS`になっているため合わせます
   #       expect(JSON.parse(response.body)['data']).not_to be_empty
@@ -51,28 +52,28 @@ RSpec.describe "Api::V1::Jobs", type: :request do
   #   end
   # end
 
-  # describe "PUT /api/v1/jobs/:id" do
+  # describe "PUT /api/v1/portfolios/:id" do
   #   context "with valid parameters" do
-  #     it "updates the job" do
-  #       put "/api/v1/jobs/#{job_id}", params: { job: valid_attributes }
+  #     it "updates the portfolios" do
+  #       put "/api/v1/portfolios/#{job_id}", params: { portfolios: valid_attributes }
   #       expect(response).to have_http_status(:success)
   #       expect(JSON.parse(response.body)['data']['title']).to eq("New Job Title")
   #     end
   #   end
 
   #   context "with invalid parameters" do
-  #     it "does not update the job" do
-  #       put "/api/v1/jobs/#{job_id}", params: { job: invalid_attributes }
+  #     it "does not update the portfolios" do
+  #       put "/api/v1/portfolios/#{job_id}", params: { portfolios: invalid_attributes }
   #       expect(response).to have_http_status(:success)
   #       expect(JSON.parse(response.body)['data']).not_to be_empty
   #     end
   #   end
   # end
 
-  # describe "DELETE /api/v1/jobs/:id" do
-  #   it "deletes the job" do
+  # describe "DELETE /api/v1/portfolios/:id" do
+  #   it "deletes the portfolios" do
   #     expect {
-  #       delete "/api/v1/jobs/#{job_id}"
+  #       delete "/api/v1/portfolios/#{job_id}"
   #     }.to change(Job, :count).by(-1)
   #     expect(response).to have_http_status(:success)
   #   end
