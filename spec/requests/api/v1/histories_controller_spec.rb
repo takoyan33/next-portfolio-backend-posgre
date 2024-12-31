@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Histories", type: :request do
+  # let!(:history) { create(:history) }
 
   describe "GET /api/v1/Histories" do
     it "returns a list of Histories" do

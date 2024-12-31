@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::infraSkills", type: :request do
+    let!(:infra_skill) { create(:infra_skill) }
 
   describe "GET /api/v1/infraSkills" do
     it "returns a list of infraSkills" do
@@ -8,7 +9,7 @@ RSpec.describe "Api::V1::infraSkills", type: :request do
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
       # データに取得失敗
-      expect(JSON.parse(response.body)['data'].size).to eq(0)
+      expect(JSON.parse(response.body)['data'].size).to eq(1)
     end
   end
 

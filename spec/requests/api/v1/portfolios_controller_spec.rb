@@ -8,7 +8,7 @@ RSpec.describe "Api::V1::Portfolios", type: :request do
       get "/api/v1/portfolios"
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
-      puts response.body
+      #puts response.body
       # データに取得失敗
       expect(JSON.parse(response.body)['data'].size).to eq(1)
     end

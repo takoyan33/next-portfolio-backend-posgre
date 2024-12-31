@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::otherSkills", type: :request do
+    let!(:other_skill) { create(:other_skill) }
 
   describe "GET /api/v1/otherSkills" do
     it "returns a list of otherSkills" do
       get "/api/v1/other_skills"
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
+      # puts response.body
       # データに取得失敗
-      expect(JSON.parse(response.body)['data'].size).to eq(0)
+      expect(JSON.parse(response.body)['data'].size).to eq(1)
     end
   end
 

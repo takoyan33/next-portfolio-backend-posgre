@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Jobs", type: :request do
-
+  let!(:job) { create(:job) }
+  
   describe "GET /api/v1/jobs" do
     it "returns a list of jobs" do
-      get "/api/v1/licenses"
+      get "/api/v1/jobs"
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
       # データに取得失敗
-      expect(JSON.parse(response.body)['data'].size).to eq(0)
+      expect(JSON.parse(response.body)['data'].size).to eq(1)
     end
   end
 

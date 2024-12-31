@@ -1,14 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::backSkills", type: :request do
+RSpec.describe "Api::V1::frontSkills", type: :request do
+    let!(:front_skill) { create(:front_skill) }
 
   describe "GET /api/v1/backSkills" do
     it "returns a list of backSkills" do
-      get "/api/v1/back_skills"
+      get "/api/v1/front_skills"
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
+      # puts response.body
       # データに取得失敗
-      expect(JSON.parse(response.body)['data'].size).to eq(0)
+      expect(JSON.parse(response.body)['data'].size).to eq(1)
     end
   end
 

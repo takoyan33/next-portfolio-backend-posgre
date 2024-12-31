@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Licenses", type: :request do
+    let!(:license) { create(:license) }
 
   describe "GET /api/v1/Licenses" do
     it "returns a list of Licenses" do
@@ -8,7 +9,7 @@ RSpec.describe "Api::V1::Licenses", type: :request do
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
       # データに取得失敗
-      expect(JSON.parse(response.body)['data'].size).to eq(0)
+      expect(JSON.parse(response.body)['data'].size).to eq(1)
     end
   end
 
