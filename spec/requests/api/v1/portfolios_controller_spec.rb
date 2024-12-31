@@ -1,27 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Portfolios", type: :request do
+  let!(:portfolio) { create(:portfolio) }
 
   describe "GET /api/v1/portfolios" do
     it "returns a list of portfolios" do
       get "/api/v1/portfolios"
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
+      puts response.body
       # データに取得失敗
-      expect(JSON.parse(response.body)['data'].size).to eq(0)
+      expect(JSON.parse(response.body)['data'].size).to eq(1)
     end
   end
 
-  # describe "GET /api/v1/portfolios/:id" do
-  #   context "when the portfolios exists" do
-  #     it "returns the portfolios" do
-  #       get "/api/v1/portfolios/1"
-  #       expect(response).to have_http_status(:success)
-  #       # data = JSON.parse(response.body)['data']
-  #       # expect(data['id']).to eq(job_id)
-  #     end
-  #   end
-  # end
+  describe "GET /api/v1/portfolios/:id" do
+    it "returns the portfolio" do
+      get "/api/v1/portfolios/#{portfolio.id}"
+
+      expect(response).to have_http_status(:success)
+
+      json = JSON.parse(response.body)
+      expect(json["data"]["id"]).to eq(portfolio.id) 
+      expect(json["data"]["name"]).to eq(portfolio.name)
+    end
+  end
 
   #   context "when the portfolios does not exist" do
   #     it "returns a 404 not found" do
