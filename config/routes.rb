@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :histories, only: [:index]
       resources :jobs, only: [:index]
       resources :licenses, only: [:index]
-      resources :portfolios, only: [:show, :index]
+      resources :portfolios, only: [:show, :index, :edit, :update]
       resources :front_skills, only: [:index]
       resources :back_skills, only: [:index]
       resources :infra_skills, only: [:index]

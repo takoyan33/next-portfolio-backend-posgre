@@ -41,7 +41,7 @@ module Api
       end
 
       def portfolio_params
-        params.require(:portfolio).permit(:title)
+        params.require(:portfolio).permit(:name, :date, {tag: []}, :topImg, :front_url, :front_github, :back_github, :color, :about, :aboutImg, :function, :functionImg, :appeal, :appealImg,  { front_skill: [] },  { back_skill: [] }, {infra_skill: []}, :time, :prev_title, :prev_article_id, :next_title, :next_article_id)
       end
     end
   end

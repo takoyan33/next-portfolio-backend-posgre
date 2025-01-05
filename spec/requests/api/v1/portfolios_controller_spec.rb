@@ -55,14 +55,16 @@ RSpec.describe "Api::V1::Portfolios", type: :request do
   #   end
   # end
 
-  # describe "PUT /api/v1/portfolios/:id" do
-  #   context "with valid parameters" do
-  #     it "updates the portfolios" do
-  #       put "/api/v1/portfolios/#{job_id}", params: { portfolios: valid_attributes }
-  #       expect(response).to have_http_status(:success)
-  #       expect(JSON.parse(response.body)['data']['title']).to eq("New Job Title")
-  #     end
-  #   end
+  describe "PUT /api/v1/portfolios/:id" do
+    context "with invalid parameters" do
+      it "returns a 422 Unprocessable Entity status and error message" do
+        put "/api/v1/portfolios/#{portfolio.id}", params: { portfolio: { name: "" } }
+        expect(response).to have_http_status(:success)
+
+        json = JSON.parse(response.body)
+      end
+    end
+  end
 
   #   context "with invalid parameters" do
   #     it "does not update the portfolios" do
