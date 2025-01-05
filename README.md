@@ -18,11 +18,6 @@
 
 <h2 id="technology-used">使用言語、環境</h2>
 
-### node バージョン
-
-- node v18.18.0
-- npm v9.8.1
-
 ### バックエンド
 
 - [ruby](https://www.ruby-lang.org/ja/) 3.2.6
@@ -40,21 +35,32 @@
 
 ```
 .
-├── api             #APIのデータ
-├── app
-│   ├── components #コンポーネントの記載
-│   ├── api        #APIの取得
-│   ├── about      #Aboutページ
-│   ├── contact    #お問い合わせページ
-│   ├── portfolio  #ポートフォリオページ
-│   ├── portfolios #ポートフォリオ個別ページ
-│   ├── skills     #スキルページ
-├── public          #画像
-├── stories         #storybook
-├── styles          #cssの設定
-├── hooks           #カスタムフック
-├── utils           #共通関数
-├── types           #型定義
+app/
+├── controllers/      # コントローラ（APIエンドポイントの処理）
+│   ├── api/          
+│   │   ├── v1/      # API用のコントローラ
+│   └── application_controller.rb # 全コントローラ共通の処理
+├── models/           # モデル（データベースとのやり取り）
+├── helpers/          # ビューヘルパー
+├── jobs/             # 非同期処理（バックグラウンドジョブ）
+├── mailers/          # メール送信処理
+channels/            # WebSocket通信
+config/
+├── routes.rb         # ルーティング設定
+├── application.rb    # アプリケーション全体の設定
+├── environments/     # 環境ごとの設定（development, test, production）
+├── initializers/     # 初期化処理
+db/
+├── migrate/          # データベースマイグレーションファイル
+├── seeds.rb          # 初期データ投入
+lib/
+├── tasks/            # Rakeタスク
+public/               # 静的ファイル（画像、CSS、JavaScriptなど）
+test/                 # テスト
+vendor/               # 外部ライブラリ
+Gemfile               # Gem（ライブラリ）の管理
+Rakefile              # Rakeタスク定義
+package.json          # npmパッケージ管理
 ```
 
 <h2 id="technology-used">ブランチについて</h2>

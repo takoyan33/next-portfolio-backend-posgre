@@ -26,13 +26,12 @@ RSpec.describe "Api::V1::Portfolios", type: :request do
     end
   end
 
-  #   context "when the portfolios does not exist" do
-  #     it "returns a 404 not found" do
-  #       get "/api/v1/portfolios/99999"
-  #       expect(response).to have_http_status(:not_found)
-  #     end
-  #   end
-  # end
+    # context "when the portfolios does not exist" do
+    #   it "returns a 404 not found" do
+    #     get "/api/v1/portfolios/99999"
+    #     expect(response).to have_http_status(:not_found)
+    #   end
+    # end
 
   # describe "POST /api/v1/portfolios" do
   #   context "with valid parameters" do
