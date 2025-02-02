@@ -33,15 +33,15 @@ RSpec.describe "Api::V1::Portfolios", type: :request do
     #   end
     # end
 
-  # describe "POST /api/v1/portfolios" do
-  #   context "with valid parameters" do
-  #     it "creates a new portfolios" do
-  #       expect {
-  #         post "/api/v1/portfolios", params: { portfolios: valid_attributes }
-  #       }.to change(Job, :count).by(1)
-  #       expect(response).to have_http_status(:success)
-  #     end
-  #   end
+  describe "POST /api/v1/portfolios" do
+    context "with valid parameters" do
+      it "creates a new portfolios" do
+        expect {
+          post "/api/v1/portfolios", params: { portfolios: valid_attributes }
+        }.to change(Job, :count).by(1)
+        expect(response).to have_http_status(:success)
+      end
+    end
 
   #   context "with invalid parameters" do
   #     it "does not create a new portfolios" do

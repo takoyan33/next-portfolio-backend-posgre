@@ -82,10 +82,10 @@ License.create!([
 ])
 
 Portfolio.create!([
-{
+	{
 		"id": 1,
 		"name": "Easy To Do",
-		"date": "2024.4.12",
+		"date": "2024-04-12",
 		"tag": ["Vue.js", "Nuxt3", "Firestore"],
 		"topImg": "/images/portfolio/portfolio_top1.png",
 		"front_url": "https://vuejs-app-front.web.app/",
@@ -97,7 +97,7 @@ Portfolio.create!([
 		"aboutImg": "/images/portfolio/portfolio_about1.png",
 		"function": "<p>機能としては</p><ul><li>ログイン、ログアウト機能</li><li>Todoの登録・編集・削除機能</li><li>Todoの詳細画面、カレンダー表示</li><li>プロフィール画面</li></ul><p>があります</p>",
 		"functionImg": "/images/portfolio/portfolio_function1.png",
-		"appeal": "<p>1つ目は、FireStoreのバッチ処理を用いてTodoの複数投稿を実装しています。<br>2つ目は、Piniaの状態管理を使って、ダークモードの状態管理やログイン状態の管理をしています。<br>3つ目は、Testing Libraryでの単体テストや、Playwirghtを用いて、E2Eテストを実装して、ログイン処理や投稿処理のチェックをしています</p>",
+		"appeal": "<p>1つ目は、FireStoreのバッチ処理を用いてTodoの複数投稿を実装した。<br>2つ目は、Piniaの状態管理を使って、ダークモードの状態管理やログイン状態の管理をしている。<br>3つ目は、Testing Libraryでの単体テストや、Playwirghtを用いて、E2Eテストを実装して、ログイン処理や投稿処理のチェックをしている。</p>",
 		"appealImg": "/images/portfolio/portfolio_appeal1.png",
 		"front_skill": [
 			"Nuxt 3",
@@ -116,7 +116,7 @@ Portfolio.create!([
 	{
 		"id": 2,
 		"name": "Manga Study",
-		"date": "2024.2.31",
+		"date": "2024-02-31",
 		"tag": ["React", "Next.js"],
 		"topImg": "/images/portfolio/portfolio_top2.png",
 		"front_url": "https://manga-study-net.vercel.app/",
@@ -128,7 +128,7 @@ Portfolio.create!([
 		"aboutImg": "/images/portfolio/portfolio_about2.png",
 		"function": "機能としては</p><ul><li>ログイン、ログアウト機能</li><li>考察記事の投稿・編集・削除機能</li><li>考察記事の詳細画面、カレンダー表示</li><li>プロフィール画面</li><li>いいね、コメント機能</li></ul><p>があります",
 		"functionImg": "/images/portfolio/portfolio_function2.png",
-		"appeal": "<p>1つ目は、UIの使いやすさを追求し、CSSはTailwind CSSを利用しており、シンプルなデザインにし、操作や閲覧がしやすいようにしました。<br> また、スクロール量を減らすために、スライドショーを導入しました。<br>２つ目は、グラフを用いて、どのカテゴリが多く投稿しているかなど分析がしやすいような工夫を入れました<br>3つ目は、Testing Libraryでの単体テストや、Playwirghtを用いて、E2Eテストを実装して、ログイン処理や投稿処理のチェックをしています</p>",
+		"appeal": "<p>1つ目は、UIの使いやすさを追求し、CSSはTailwind CSSを利用しており、シンプルなデザインにし、操作や閲覧がしやすいようにした。<br> また、スクロール量を減らすために、スライドショーを導入した。<br>２つ目は、グラフを用いて、どのカテゴリが多く投稿しているかなど分析がしやすいような工夫を入れた。<br>3つ目は、Testing Libraryでの単体テストや、Playwirghtを用いて、E2Eテストを実装して、ログイン処理や投稿処理のチェックをしている。</p>",
 		"appealImg": "/images/portfolio/portfolio_appeal2.png",
 		"front_skill": [
 			"React",
@@ -149,21 +149,22 @@ Portfolio.create!([
 	{
 		"id": 3,
 		"name": "To You Design(ポートフォリオサイト)",
-		"date": "2023.11.30",
-		"tag": ["React", "Next.js", "Vercel"],
+		"date": "2023-11-30",
+		"tag": ["React", "Next.js", "Ruby"],
 		"topImg": "/images/portfolio/portfolio_top3.png",
 		"front_url": "https://to-you-design.vercel.app/",
 		"front_github": "https://github.com/takoyan33/nextjs-portfolio",
-		"back_github": "",
+		"back_github": "https://github.com/takoyan33/next-portfolio-backend-posgre",
 		"color": "portfolio__tag--color4",
-		"about": "<p>自分についての経歴や経験を振り返るために、ポートフォリオサイトとして、Next.jsで制作しました。</p>",
+		"about": "<p>自分についての経歴や経験を振り返るために、ポートフォリオサイトとして、Next.jsとRuby on Railsで制作しました。</p>",
 		"aboutImg": "/images/portfolio/portfolio_about3.png",
 		"function": "<p>内容としては</p><ul><li>経歴、職歴紹介</li><li>ポートフォリオ紹介</li><li>ブログ表示</li><li>プロフィール画面</li></ul><p>があります</p>",
 		"functionImg": "/images/portfolio/portfolio_function3.png",
-		"appeal": "<p>意識した点は、1つはCSS設計を意識して、綺麗にコーディングしている点です。PC版やスマホ版を意識した実装をしました。<br>2つ目は、appディレクトリで、サーバーコンポーネントで実装している点です。</p>",
+		"appeal": "<p>意識した点は、1つはCSS設計を意識して、綺麗にコーディングしている点です。レスポンシブを意識した実装をしました。<br>2つ目は、App Routerで実装し、読み込みを早めるため、Server Componentを利用しながら実装している点です。<br>3つ目にRuby on RailsでバックエンドのAPIを作っており、そこからデータを取得している点です。</p>",
 		"appealImg": "/images/portfolio/portfolio_appeal3.png",
 		"front_skill": ["React", "Next.js", "SCSS", "Biome"],
-		"infra_skill": ["Vercel"],
+		"back_skill": ["Ruby on Rails", "Ruby"],
+		"infra_skill": ["Vercel", "Render"],
 		"time": "2ヶ月",
 		"prev_title": "Manga Study",
 		"prev_article_id": "2",
@@ -173,7 +174,7 @@ Portfolio.create!([
 	{
 		"id": 4,
 		"name": "サークル管理App",
-		"date": "2022.11.30",
+		"date": "2022-11-30",
 		"tag": ["React", "Ruby"],
 		"topImg": "/images/portfolio/portfolio_7.png",
 		"front_github": "https://github.com/takoyan33/rails-react-app-front",
@@ -199,7 +200,7 @@ Portfolio.create!([
 	{
 		"id": 5,
 		"name": "株式会社セルフ・ヒーリング実践研究会サイト構築",
-		"date": "2022.09.01",
+		"date": "2022-09-01",
 		"tag": ["html", "WordPress"],
 		"topImg": "/images/portfolio/portfolio_9.png",
 		"front_url": "https://self-healing.co.jp/",
@@ -211,7 +212,7 @@ Portfolio.create!([
 		"aboutImg": "/images/portfolio/portfolio_about5.png",
 		"function": "<p>ページとしては、研究会の紹介ページやNEWSページ、お問い合わせページなどを作成しました</p>",
 		"functionImg": "/images/portfolio/portfolio_appeal5.png",
-		"appeal": "<p>大学時代にヒアリングから設計、構築まで１人で担当し、納品まで完了しました。<br>この案件により、コーディング力やWordPressの知識などがかなり身につきました</p>",
+		"appeal": "<p>大学時代にヒアリングから設計、構築まで１人で担当し、納品まで完了しました。<br>この案件により、コーディング力やWordPressの知識などがかなり身に付くことができた。また、WordPressとも連携しており、カスタム投稿タイプなどを用いて、複数のブログ機能を作成した。</p>",
 		"appealImg": "/images/portfolio/portfolio_9.png",
 		"front_skill": ["html", "css", "JavaScript"],
 		"back_skill": ["WordPress"],
@@ -224,7 +225,7 @@ Portfolio.create!([
 	{
 		"id": 6,
 		"name": "三菱レンタカー下層ページコーディング",
-		"date": "2021.09.01",
+		"date": "2021-09-01",
 		"tag": ["html", "CSS"],
 		"topImg": "/images/portfolio/portfolio_1.png",
 		"front_url": "https://www.mmc-dia-finance.com/rental/",
@@ -242,7 +243,32 @@ Portfolio.create!([
 		"back_skill": ["WordPress"],
 		"time": "2ヶ月",
 		"prev_title": "株式会社セルフ・ヒーリング実践研究会サイト構築",
-		"prev_article_id": "5"
+		"prev_article_id": "5",
+		"next_title": "Next + Prisma",
+		"next_article_id": "7"
+	},
+	{
+		"id": 7,
+		"name": "Next + Prisma",
+		"date": "2025-01-11",
+		"tag": ["Next.js", "Prisma"],
+		"topImg": "/images/portfolio/portfolio_10.png",
+		"front_url": "https://nextjs--prisma--todo.vercel.app/",
+		"front_github": "https://github.com/takoyan33/nextjs-hono",
+		"back_github": "",
+		"back_url": "",
+		"color": "portfolio__tag--color1",
+		"about": "<p>フロントエンドは、Next.js。バックエンドは、Prisma, Neonを使ったサイトです。</p>",
+		"aboutImg": "/images/portfolio/portfolio_appeal10.png",
+		"functionImg": "/images/portfolio/portfolio_about10.png",
+		"function": "<p>機能としては</p><ul><li>個人と組織でのログイン、ログアウト機能</li><li>記事の投稿・編集・削除機能</li><li>ダークモード切り替え</li>></ul><p>があります</p>",
+		"appeal": "<p>１つ目は、Prismaを使った点で、NeonのPostgreSQLをデータベースで使っており、データの取得、更新などをPrismaで行っている。２つ目は、Next.jsのバージョンは15で、最新版を利用している点である。３つ目は、認証機能をClerkを使った点であり、導入すると迅速に認証機能をつけることができるため、時間を短縮した点である。</p>",
+		"appealImg": "/images/portfolio/portfolio_function10.png",
+		"front_skill": ["Next.js","TypeScript", "shadcn/ui", "Clerk"],
+		"back_skill": ["Prisma", "Neon"],
+		"time": "2ヶ月",
+		"prev_title": "三菱レンタカー下層ページコーディング",
+		"prev_article_id": "6"
 	}
 ])
 
