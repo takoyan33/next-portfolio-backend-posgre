@@ -82,7 +82,7 @@ License.create!([
 ])
 
 Portfolio.create!([
-	{
+		{
 		"id": 1,
 		"name": "Easy To Do",
 		"date": "2024-04-12",
@@ -273,12 +273,12 @@ Portfolio.create!([
 ])
 
 FrontSkill.create!([
-	{
+{
 		"id": 1,
 		"name": "HTML",
 		"rank": "★★★★",
 		"tag": "経験年数：3年",
-		"about": "ホームページ制作などで使用",
+		"about": "ホームページ制作などで長年利用。セマンティックなマークアップを意識している。",
 		"icon": "/images/skill/html5.svg"
 	},
 	{
@@ -286,74 +286,74 @@ FrontSkill.create!([
 		"name": "CSS(SCSS)",
 		"rank": "★★★★",
 		"tag": "経験年数：3年",
-		"about": "ホームページ制作などで使用",
+		"about": "ホームページ制作などで長年利用。BEMなどを意識して実装",
 		"icon": "/images/skill/css3.svg"
 	},
 	{
 		"id": 3,
 		"name": "JavaScript",
 		"rank": "★★★",
-		"tag": "経験年数：2年",
-		"about": "ホームページ制作やReactなどで使用",
+		"tag": "経験年数：3年",
+		"about": "ホームページでのアニメーション(jQuery)利用やReactなどで使用",
 		"icon": "/images/skill/js.svg"
 	},
 	{
 		"id": 4,
 		"name": "TypeScript",
 		"rank": "★★★",
-		"tag": "経験年数：1年",
-		"about": "ホームページ制作やReactなどで使用",
+		"tag": "経験年数：2年",
+		"about": "主にシステム開発でReactやVue.jsなどで使用",
 		"icon": "/images/skill/js.svg"
 	},
 	{
 		"id": 5,
 		"name": "React/Next.js",
 		"rank": "★★★",
-		"tag": "経験年数：2年",
-		"about": "フロントを実装する際に利用。一番好きな技術",
+		"tag": "経験年数：3年",
+		"about": "システム開発のフロントを実装する際に利用。個人的に一番好きな技術",
 		"icon": "/images/skill/react.svg"
 	},
 	{
 		"id": 6,
 		"name": "Vue.js/Nuxt.js",
 		"rank": "★★",
-		"tag": "経験年数：1年",
-		"about": "フロントを実装する際に利用。現在学習中",
+		"tag": "経験年数：2年",
+		"about": "システム開発のフロントを実装する際に利用。Nuxt3を用いたwebサイトの実務経験有り",
 		"icon": "/images/skill/vuejs.svg"
 	},
 	{
 		"id": 7,
 		"name": "WordPress",
 		"rank": "★★★",
-		"tag": "経験年数：1年",
-		"about": "ホームページ制作などで使用。ブログ機能やカスタムフィールドなども実装可能。WordPressAPIの実装経験有り",
+		"tag": "経験年数：2年",
+		"about": "ホームページ制作などで使用。ブログ機能やACFやカスタムフィールドなども実装可能。WordPressAPIの実装経験有り",
 		"icon": "/images/skill/wordpress.svg"
 	}
 ])
 
 BackSkill.create!([
-	{
+{
 		"id": 1,
-		"name": "Firestore",
+		"name": "Firebase",
 		"rank": "★★★★",
 		"tag": "経験年数：3年",
-		"about": "システム構築のバックエンドで利用。認証やデプロイの経験も有り",
+		"about": "NoSQLデータベースの設計・実装、認証(firebase authentication)やHostingでのデプロイの経験も有り",
 		"icon": "/images/skill/fire.svg"
 	},
 	{
 		"id": 2,
 		"name": "Ruby",
 		"rank": "★★★",
-		"tag": "経験年数：1年",
-		"about": "システム構築のバックエンドで利用。",
+		"tag": "経験年数：2年",
+		"about": "Ruby on Railsを用いたRESTful API開発やRSpecでのテスト実装などを個人開発で利用",
 		"icon": "/images/skill/ruby.svg"
 	},
 	{
 		"id": 3,
 		"name": "PHP",
 		"rank": "★★",
-		"tag": "経験年数：3ヶ月",
-		"about": "システム構築のバックエンドで利用。",
+		"tag": "経験年数：半年",
+		"about": "Laravelフレームワークを使用したRESTful API開発で利用",
 		"icon": "/images/skill/php.svg"
 	}
 ])
@@ -364,7 +364,7 @@ InfraSkill.create!([
 		"name": "AWS",
 		"rank": "★★★★",
 		"tag": "経験年数：3年",
-		"about": "インターンなどで利用。S3, CloudFront, Cognitoなどを使用",
+		"about": "S3でのファイルストレージ管理、CloudFrontを用いたCDN構築、Cognitoでの認証実装などで使用",
 		"icon": "/images/skill/aws.svg"
 	},
 	{
@@ -372,7 +372,15 @@ InfraSkill.create!([
 		"name": "Vercel",
 		"rank": "★★★★",
 		"tag": "経験年数：3年",
-		"about": "ReactやVueのデプロイで利用",
+		"about": "ReactやVue.jsのデプロイで利用",
+		"icon": "/images/skill/server.svg"
+	},
+	{
+		"id": 3,
+		"name": "Render",
+		"rank": "★★★★",
+		"tag": "経験年数：3年",
+		"about": "Ruby on Railsのデプロイで利用",
 		"icon": "/images/skill/server.svg"
 	}
 ])
@@ -382,15 +390,15 @@ OtherSkill.create!([
 		"id": 1,
 		"name": "Figma",
 		"rank": "★★★",
-		"tag": "経験年数：1年半",
-		"about": "デザイン制作やコーディングなどで使用",
+		"tag": "経験年数：2年",
+		"about": "デザイン設計やコーディングなどで使用",
 		"icon": "/images/skill/figma.svg"
 	},
 	{
 		"id": 2,
 		"name": "Github",
 		"rank": "★★★",
-		"tag": "経験年数：1年半",
+		"tag": "経験年数：3年",
 		"about": "個人開発や仕事でのソース管理で利用",
 		"icon": "/images/skill/github.svg"
 	},
@@ -407,7 +415,15 @@ OtherSkill.create!([
 		"name": "Bitbucket",
 		"rank": "★★",
 		"tag": "経験年数：1年半",
-		"about": "仕事のソース管理で利用",
+		"about": "仕事でのGitを用いたバージョン管理で利用",
+		"icon": "/images/skill/bitbucket.svg"
+	},
+	{
+		"id": 5,
+		"name": "Docker",
+		"rank": "★★",
+		"tag": "経験年数：2年",
+		"about": "コンテナ技術を活用した開発環境の構築を個人開発などで経験有り",
 		"icon": "/images/skill/bitbucket.svg"
 	}
 ])
