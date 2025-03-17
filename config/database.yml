@@ -6,10 +6,26 @@ default: &default
   password: password
   pool: 5
 
+# development:
+#   <<: *default
+#   database: myapp_development
+
 development:
   <<: *default
-  database: myapp_development
+  host: <%= ENV["DB_HOST"].sub(/^@/, '') %>
+  database: <%= ENV["DB_NAME"] %>
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  sslmode: require
 
 test:
   <<: *default
   database: myapp_test
+
+production:
+  <<: *default
+  host: <%= ENV["DB_HOST"].sub(/^@/, '') %>
+  database: <%= ENV["DB_NAME"] %>
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  sslmode: require
