@@ -7,14 +7,14 @@ module Api
         @histories = cached_response("histories") do
           History.all.to_a
         end
-        render json: @histories
+        render json: { status: 'SUCCESS', data:  @histories }
       end
 
       def show
         @history = cached_response("history/#{params[:id]}") do
           History.find(params[:id])
         end
-        render json: @history
+        render json: { status: 'SUCCESS', data:  @history }
       end
 
       def create

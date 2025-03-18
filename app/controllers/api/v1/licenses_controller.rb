@@ -7,14 +7,14 @@ module Api
         @licenses = cached_response("licenses") do
           License.all.to_a
         end
-        render json: @licenses
+        render json: { status: 'SUCCESS', data:  @licenses }
       end
 
       def show
         @license = cached_response("license/#{params[:id]}") do
           License.find(params[:id])
         end
-        render json: @license
+        render json: { status: 'SUCCESS', data:  @license }
       end
 
       def create

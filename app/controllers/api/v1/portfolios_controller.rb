@@ -7,14 +7,14 @@ module Api
         @portfolios = cached_response("portfolios") do
           Portfolio.all.to_a
         end
-        render json: @portfolios
+        render json: { status: 'SUCCESS', data:  @portfolios }
       end
 
       def show
         @portfolio = cached_response("portfolio/#{params[:id]}") do
           Portfolio.find(params[:id])
         end
-        render json: @portfolio
+        render json: { status: 'SUCCESS', data:  @portfolio }
       end
 
       def create

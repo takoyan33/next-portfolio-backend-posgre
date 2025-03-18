@@ -7,14 +7,14 @@ module Api
         @front_skills = cached_response("front_skills") do
           FrontSkill.all.to_a
         end
-        render json: @front_skills
+        render json: { status: 'SUCCESS', data:  @front_skills }
       end
 
       def show
         @front_skill = cached_response("front_skill/#{params[:id]}") do
           FrontSkill.find(params[:id])
         end
-        render json: @front_skill
+        render json: { status: 'SUCCESS', message: 'Loaded the back_skill', data: @front_skill }
       end
 
       def create

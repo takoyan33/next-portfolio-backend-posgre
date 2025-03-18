@@ -7,14 +7,14 @@ module Api
         @jobs = cached_response("jobs") do
           Job.all.to_a
         end
-        render json: @jobs
+        render json: { status: 'SUCCESS', data:  @jobs }
       end
 
       def show
         @job = cached_response("job/#{params[:id]}") do
           Job.find(params[:id])
         end
-        render json: @job
+        render json: { status: 'SUCCESS', data:  @job }
       end
 
       def create
