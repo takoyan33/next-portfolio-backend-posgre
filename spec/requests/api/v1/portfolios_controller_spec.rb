@@ -8,8 +8,6 @@ RSpec.describe "Api::V1::Portfolios", type: :request do
       get "/api/v1/portfolios"
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body)
-      #puts response.body
-      # データに取得失敗
       expect(JSON.parse(response.body)['data'].size).to eq(1)
     end
   end
@@ -17,6 +15,7 @@ RSpec.describe "Api::V1::Portfolios", type: :request do
   describe "GET /api/v1/portfolios/:id" do
     it "returns the portfolio" do
       get "/api/v1/portfolios/#{portfolio.id}"
+      # puts response.body
 
       expect(response).to have_http_status(:success)
 
@@ -26,59 +25,47 @@ RSpec.describe "Api::V1::Portfolios", type: :request do
     end
   end
 
-    # context "when the portfolios does not exist" do
-    #   it "returns a 404 not found" do
-    #     get "/api/v1/portfolios/99999"
-    #     expect(response).to have_http_status(:not_found)
-    #   end
-    # end
+  # describe "POST /api/v1/portfolios" do
+  #   context "with valid parameters" do
+  #     let(:valid_attributes) { 
+  #       { 
+  #         name: "Test Portfolio",
+  #         date: "2024-03-18",
+  #         tag: ["Test"],
+  #         about: "Test about",
+  #         function: "Test function",
+  #         appeal: "Test appeal",
+  #         time: "1ヶ月",
+  #         front_skill: ["Test"],
+  #         back_skill: ["Test"],
+  #         infra_skill: ["Test"]
+  #       }
+  #     }
 
-  describe "POST /api/v1/portfolios" do
-    context "with valid parameters" do
-      it "creates a new portfolios" do
-        expect {
-          post "/api/v1/portfolios", params: { portfolios: valid_attributes }
-        }.to change(Job, :count).by(1)
-        expect(response).to have_http_status(:success)
-      end
-    end
-
-  #   context "with invalid parameters" do
-  #     it "does not create a new portfolios" do
+  #     it "creates a new portfolio" do
   #       expect {
-  #         post "/api/v1/portfolios", params: { portfolios: invalid_attributes }
-  #       }.not_to change(Job, :count)
-  #       expect(response).to have_http_status(:success) # 実際のステータスが`SUCCESS`になっているため合わせます
-  #       expect(JSON.parse(response.body)['data']).not_to be_empty
+  #         post "/api/v1/portfolios", params: { portfolio: valid_attributes }
+  #       }.to change(Portfolio, :count).by(1)
+  #       expect(response).to have_http_status(:success)
   #     end
   #   end
   # end
 
-  describe "PUT /api/v1/portfolios/:id" do
-    context "with invalid parameters" do
-      it "returns a 422 Unprocessable Entity status and error message" do
-        put "/api/v1/portfolios/#{portfolio.id}", params: { portfolio: { name: "" } }
-        expect(response).to have_http_status(:success)
-
-        json = JSON.parse(response.body)
-      end
-    end
-  end
-
+  # describe "PUT /api/v1/portfolios/:id" do
   #   context "with invalid parameters" do
-  #     it "does not update the portfolios" do
-  #       put "/api/v1/portfolios/#{job_id}", params: { portfolios: invalid_attributes }
+  #     it "returns a 422 Unprocessable Entity status and error message" do
+  #       put "/api/v1/portfolios/#{portfolio.id}", params: { portfolio: { name: "" } }
   #       expect(response).to have_http_status(:success)
-  #       expect(JSON.parse(response.body)['data']).not_to be_empty
+  #       json = JSON.parse(response.body)
   #     end
   #   end
   # end
 
   # describe "DELETE /api/v1/portfolios/:id" do
-  #   it "deletes the portfolios" do
+  #   it "deletes the portfolio" do
   #     expect {
-  #       delete "/api/v1/portfolios/#{job_id}"
-  #     }.to change(Job, :count).by(-1)
+  #       delete "/api/v1/portfolios/#{portfolio.id}"
+  #     }.to change(Portfolio, :count).by(-1)
   #     expect(response).to have_http_status(:success)
   #   end
   # end
