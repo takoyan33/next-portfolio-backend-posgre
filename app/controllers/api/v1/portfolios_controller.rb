@@ -1,15 +1,20 @@
 module Api
   module V1
-    class PortfoliosController < ApplicationController
+    class PortfoliosController < BaseController
       before_action :set_portfolio, only: [:show, :update, :destroy]
 
       def index
-        portfolios = Portfolio.order(created_at: :desc)
-        render json: { status: 'SUCCESS',  data: portfolios }
+        @portfolios = cached_response("portfolios") do
+          Portfolio.all.to_a
+        end
+        render json: @portfolios
       end
 
       def show
-        render json: { status: 'SUCCESS', data: @portfolio }
+        @portfolio = cached_response("portfolio/#{params[:id]}") do
+          Portfolio.find(params[:id])
+        end
+        render json: @portfolio
       end
 
       def create

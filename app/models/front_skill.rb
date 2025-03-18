@@ -1,4 +1,5 @@
 class FrontSkill < ApplicationRecord
+  include CacheClearable
   validates :name, presence: true
   validates :rank, presence: true
   validates :tag, presence: true

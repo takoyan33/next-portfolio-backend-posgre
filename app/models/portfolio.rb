@@ -1,4 +1,5 @@
 class Portfolio < ApplicationRecord
+  include CacheClearable
   validates :name, presence: true
   validates :date, presence: true
   validates :tag, presence: true

@@ -1,15 +1,20 @@
 module Api
   module V1
-    class FrontSkillsController < ApplicationController
+    class FrontSkillsController < BaseController
       before_action :set_front_skill, only: [:show, :update, :destroy]
 
       def index
-        front_skills = FrontSkill.order(created_at: :desc)
-        render json: { status: 'SUCCESS', data: front_skills }
+        @front_skills = cached_response("front_skills") do
+          FrontSkill.all.to_a
+        end
+        render json: @front_skills
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the front_skill', data: @front_skill }
+        @front_skill = cached_response("front_skill/#{params[:id]}") do
+          FrontSkill.find(params[:id])
+        end
+        render json: @front_skill
       end
 
       def create
