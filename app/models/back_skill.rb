@@ -1,6 +1,6 @@
 class BackSkill < ApplicationRecord
-  validates :id, presence: true
   validates :name, presence: true
+  validates :rank, presence: true
   validates :tag, presence: true
   validates :about, presence: true
   validates :icon, presence: true
