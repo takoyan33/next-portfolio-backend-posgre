@@ -1,15 +1,20 @@
 module Api
   module V1
-    class HistoriesController < ApplicationController
+    class HistoriesController < BaseController
       before_action :set_history, only: [:show, :update, :destroy]
 
       def index
-        histories = History.order(created_at: :desc)
-        render json: { status: 'SUCCESS', data: histories }
+        @histories = cached_response("histories") do
+          History.all.to_a
+        end
+        render json: { status: 'SUCCESS', data:  @histories }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the history', data: @history }
+        @history = cached_response("history/#{params[:id]}") do
+          History.find(params[:id])
+        end
+        render json: { status: 'SUCCESS', data:  @history }
       end
 
       def create

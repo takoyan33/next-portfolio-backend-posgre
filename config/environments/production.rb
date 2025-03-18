@@ -83,4 +83,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Enable caching
+  config.cache_store = :memory_store, { size: 64.megabytes }
+  
+  # Enable fragment and page caching in ActionController
+  config.action_controller.perform_caching = true
+  
+  # HTTP caching headers
+  config.public_file_server.headers = {
+    'Cache-Control' => "public, max-age=#{2.days.to_i}"
+  }
 end

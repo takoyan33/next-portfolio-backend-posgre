@@ -1,15 +1,20 @@
 module Api
   module V1
-    class LicensesController < ApplicationController
+    class LicensesController < BaseController
       before_action :set_license, only: [:show, :update, :destroy]
 
       def index
-        licenses = License.order(created_at: :desc)
-        render json: { status: 'SUCCESS', data: licenses }
+        @licenses = cached_response("licenses") do
+          License.all.to_a
+        end
+        render json: { status: 'SUCCESS', data:  @licenses }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the license', data: @license }
+        @license = cached_response("license/#{params[:id]}") do
+          License.find(params[:id])
+        end
+        render json: { status: 'SUCCESS', data:  @license }
       end
 
       def create
