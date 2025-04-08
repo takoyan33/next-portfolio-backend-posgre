@@ -1,0 +1,84 @@
+openapi: 3.0.1
+info:
+  title: To You Design API
+  version: v1
+  description: API for To You Design.
+
+paths:
+  /api/v1/front_skills:
+    get:
+      summary: Get all Front skills
+      tags:
+        - FrontSkills
+      responses:
+        "200":
+          description: A list of Front skills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FrontSkill"
+  /api/v1/back_skills:
+    get:
+      summary: Get all back skills
+      tags:
+        - BackSkills
+      responses:
+        "200":
+          description: A list of back skills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/BackSkill"
+
+components:
+  schemas:
+    FrontSkill:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    BackSkill:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    BackSkillInput:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
