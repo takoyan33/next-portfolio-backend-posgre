@@ -45,6 +45,46 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/BackSkill"
+  /api/v1/infra_skills:
+    get:
+      summary: Get all infra skills
+      tags:
+        - InfraSkills
+      responses:
+        "200":
+          description: A list of infra skills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/InfraSkill"
+  /api/v1/other_skills:
+    get:
+      summary: Get all other skills
+      tags:
+        - OtherSkills
+      responses:
+        "200":
+          description: A list of Other skills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/OtherSkill"
 
 components:
   schemas:
@@ -74,11 +114,37 @@ components:
         updated_at:
           type: string
           format: date-time
-
-    BackSkillInput:
+    InfraSkill:
       type: object
-      required:
-        - title
       properties:
+        id:
+          type: integer
         title:
           type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    OtherSkill:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    # BackSkillInput:
+    #   type: object
+    #   required:
+    #     - title
+    #   properties:
+    #     title:
+    #       type: string
