@@ -19,3 +19,12 @@ services:
       - db
     env_file:
       - .env
+  # swagger-ui:
+  #   image: swaggerapi/swagger-ui
+  #   container_name: swagger-ui
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./swagger.yaml:/usr/share/nginx/html/swagger.yaml
+  #   environment:
+  #     SWAGGER_JSON: /usr/share/nginx/html/swagger.yaml

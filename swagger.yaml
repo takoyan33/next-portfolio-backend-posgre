@@ -1,0 +1,357 @@
+openapi: 3.0.1
+info:
+  title: To You Design API
+  version: v1
+  description: API for To You Design.
+
+paths:
+  /api/v1/histories:
+    get:
+      summary: Get all histories
+      tags:
+        - Histories
+      responses:
+        "200":
+          description: A list of histories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Histories"
+  /api/v1/licenses:
+    get:
+      summary: Get all licenses
+      tags:
+        - Licenses
+      responses:
+        "200":
+          description: A list of licenses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Licenses"
+  /api/v1/jobs:
+    get:
+      summary: Get all jobs
+      tags:
+        - Jobs
+      responses:
+        "200":
+          description: A list of jobs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Jobs"
+  /api/v1/portfolios:
+    get:
+      summary: Get all Portfolios
+      tags:
+        - Portfolios
+      responses:
+        "200":
+          description: A list of Portfolios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Portfolios"
+  /api/v1/front_skills:
+    get:
+      summary: Get all Front skills
+      tags:
+        - FrontSkills
+      responses:
+        "200":
+          description: A list of Front skills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FrontSkill"
+  /api/v1/back_skills:
+    get:
+      summary: Get all back skills
+      tags:
+        - BackSkills
+      responses:
+        "200":
+          description: A list of back skills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/BackSkill"
+  /api/v1/infra_skills:
+    get:
+      summary: Get all infra skills
+      tags:
+        - InfraSkills
+      responses:
+        "200":
+          description: A list of infra skills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/InfraSkill"
+  /api/v1/other_skills:
+    get:
+      summary: Get all other skills
+      tags:
+        - OtherSkills
+      responses:
+        "200":
+          description: A list of Other skills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/OtherSkill"
+
+components:
+  schemas:
+    Histories:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        date:
+          type: string
+        body:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Portfolios:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        date:
+          type: string
+        tag:
+          type: array
+          items:
+            type: string
+        topImg:
+          type: string
+        front_url:
+          type: string
+          nullable: true
+        back_url:
+          type: string
+          nullable: true
+        front_github:
+          type: string
+          nullable: true
+        back_github:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        about:
+          type: string
+          nullable: true
+        aboutImg:
+          type: string
+          nullable: true
+        function:
+          type: string
+          nullable: true
+        functionImg:
+          type: string
+          nullable: true
+        appeal:
+          type: string
+          nullable: true
+        appealImg:
+          type: string
+          nullable: true
+        front_skill:
+          type: array
+          items:
+            type: string
+        back_skill:
+          type: array
+          items:
+            type: string
+        infra_skill:
+          type: array
+          items:
+            type: string
+        time:
+          type: string
+        prev_title:
+          type: string
+          nullable: true
+        prev_article_id:
+          type: string
+          nullable: true
+        next_title:
+          type: string
+          nullable: true
+        next_article_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Licenses:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        date:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Jobs:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        date:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    FrontSkill:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    BackSkill:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    InfraSkill:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    OtherSkill:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    # BackSkillInput:
+    #   type: object
+    #   required:
+    #     - title
+    #   properties:
+    #     title:
+    #       type: string
