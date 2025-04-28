@@ -1,15 +1,20 @@
 module Api
   module V1
-    class JobsController < ApplicationController
+    class JobsController < BaseController
       before_action :set_history, only: [:show, :update, :destroy]
 
       def index
-        jobs = Job.order(created_at: :desc)
-        render json: { status: 'SUCCESS', data: jobs }
+        @jobs = cached_response("jobs") do
+          Job.all.to_a
+        end
+        render json: { status: 'SUCCESS', data:  @jobs }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the job', data: @job }
+        @job = cached_response("job/#{params[:id]}") do
+          Job.find(params[:id])
+        end
+        render json: { status: 'SUCCESS', data:  @job }
       end
 
       def create
