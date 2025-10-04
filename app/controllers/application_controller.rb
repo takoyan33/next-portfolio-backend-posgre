@@ -24,5 +24,5 @@ class ApplicationController < ActionController::API
     render json: { status: 400, error: 'Bad Request', message: error.message }, status: :bad_request
   end
 
-  before_action :set_secure_headers
+  #before_action :set_secure_headers
 end
