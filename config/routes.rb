@@ -16,4 +16,5 @@ Rails.application.routes.draw do
       resources :other_skills, only: [:index]
     end
   end
+  root to: proc { [200, {}, ['OK']] }
 end
