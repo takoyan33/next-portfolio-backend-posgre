@@ -1,0 +1,64 @@
+name: Run RSpec
+
+on:
+  push:
+    branches: [main] # main または develop ブランチへの push 時に実行
+  pull_request: # PR 作成・更新時にも実行
+
+jobs:
+  test:
+    runs-on: ubuntu-latest # 最新の Ubuntu 環境でジョブを実行
+
+    services:
+      postgres:
+        image: postgres:15 # PostgreSQL 15 コンテナを起動
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        ports:
+          - 5432:5432 # ローカル側から 5432 ポートで接続できるようにする
+        options: >- # DB が起動完了するまで待機するためのヘルスチェック設定
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      # RSpec実行時に使用するテスト環境のDB接続URL
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        # 現在のリポジトリのソースコードをチェックアウト
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.6 # プロジェクトで使用しているRubyのバージョン
+          bundler-cache: true # gemの依存関係をキャッシュして高速化
+
+      - name: Install system packages
+        run: sudo apt-get update && sudo apt-get install -y libpq-dev postgresql-client
+        # PostgreSQLとの接続やRailsのビルドに必要なシステムパッケージをインストール
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
+        # BundlerでGemをインストール。並列実行・再試行で安定化
+
+      - name: Wait for Postgres
+        run: |
+          # DBコンテナが起動完了するまで最大15秒待機
+          for i in {1..15}; do
+            pg_isready -h 127.0.0.1 -p 5432 && break || sleep 1
+          done
+
+      - name: Prepare database
+        run: |
+          # テスト用DBを作成し、スキーマをロード
+          bundle exec rails db:create db:schema:load
+
+      - name: Run RSpec
+        run: bundle exec rspec --format documentation
+        # RSpecテストを実行。結果を詳細形式で出力
