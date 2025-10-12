@@ -16,15 +16,24 @@ jobs:
         run: |
           set -e
           echo "Triggering Render deploy for service: $RENDER_SERVICE_ID"
-          resp=$(curl -s -o /dev/stderr -w "%{http_code}" \
+
+          # Renderにデプロイをリクエスト
+          response=$(curl -s -w "\n%{http_code}" \
             -X POST \
             -H "Authorization: Bearer $RENDER_API_KEY" \
             -H "Content-Type: application/json" \
             -d '{"clearCache":false}' \
             "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys")
-          if [ "$resp" -ge 200 ] && [ "$resp" -lt 300 ]; then
-            echo "Render deploy triggered successfully (status: $resp)"
+
+          # HTTPコードとレスポンス本体を分離
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+
+          if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+            echo "✅ Render deploy triggered successfully (status: $http_code)"
+            echo "$body"
           else
-            echo "Failed to trigger Render deploy (status: $resp)" >&2
+            echo "❌ Failed to trigger Render deploy (status: $http_code)"
+            echo "$body"
             exit 1
           fi
