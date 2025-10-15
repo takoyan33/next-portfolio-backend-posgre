@@ -1,15 +1,23 @@
 module Api
   module V1
+    # license API Controller
+    #
+    # @example
+    #   GET /api/v1/license
+    #   => { status: 'SUCCESS', data: [...] }
+    #
+    # @see license
+    #
     class LicensesController < ApplicationController
       before_action :set_license, only: [:show, :update, :destroy]
-
+      # license一覧を取得
       def index
-        licenses = License.order(created_at: :desc)
+        licenses = Licenses::FetchAllService.call
         render json: { status: 'SUCCESS', data: licenses }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the license', data: @license }
+        render json: { status: 'SUCCESS', data: @license }
       end
 
       def create

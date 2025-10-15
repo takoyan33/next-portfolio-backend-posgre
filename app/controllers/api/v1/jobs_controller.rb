@@ -1,15 +1,23 @@
 module Api
   module V1
+    # jobs API Controller
+    #
+    # @example
+    #   GET /api/v1/jobs
+    #   => { status: 'SUCCESS', data: [...] }
+    #
+    # @see jobs
+    #
     class JobsController < ApplicationController
       before_action :set_history, only: [:show, :update, :destroy]
-
+      # job一覧を取得
       def index
-        jobs = Job.order(created_at: :desc)
+        jobs = Jobs::FetchAllService.call
         render json: { status: 'SUCCESS', data: jobs }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the job', data: @job }
+        render json: { status: 'SUCCESS', data: @job }
       end
 
       def create

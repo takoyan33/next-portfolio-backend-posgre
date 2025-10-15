@@ -1,15 +1,23 @@
 module Api
   module V1
+    # BackSkills API Controller
+    #
+    # @example
+    #   GET /api/v1/back_skills
+    #   => { status: 'SUCCESS', data: [...] }
+    #
+    # @see BackSkill
+    #
     class BackSkillsController < ApplicationController
       before_action :set_back_skill, only: [:show, :update, :destroy]
-
+      # back_skill一覧を取得
       def index
-        back_skills = BackSkill.order(created_at: :desc)
+        back_skills = BackSkills::FetchAllService.call
         render json: { status: 'SUCCESS', data: back_skills }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the back_skill', data: @back_skill }
+        render json: { status: 'SUCCESS',  data: @back_skill }
       end
 
       def create

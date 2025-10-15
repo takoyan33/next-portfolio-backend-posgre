@@ -1,13 +1,21 @@
 module Api
   module V1
+    # portfolios API Controller
+    #
+    # @example
+    #   GET /api/v1/portfolios
+    #   => { status: 'SUCCESS', data: [...] }
+    #
+    # @see portfolio
+    #
     class PortfoliosController < ApplicationController
       before_action :set_portfolio, only: [:show, :update, :destroy]
-
+      # portfolios一覧を取得
       def index
-        portfolios = Portfolio.order(created_at: :desc)
+        portfolios = Portfolios::FetchAllService.call
         render json: { status: 'SUCCESS',  data: portfolios }
       end
-
+      # 個別portfoliosを取得
       def show
         render json: { status: 'SUCCESS', data: @portfolio }
       end
