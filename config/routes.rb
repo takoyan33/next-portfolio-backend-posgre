@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
     namespace 'api' do
     namespace 'v1' do
+      post 'auth/register', to: 'auth#register'
+      post 'auth/login', to: 'auth#login'
       resources :posts, only: [:index]
       resources :histories, only: [:index]
       resources :jobs, only: [:index]
