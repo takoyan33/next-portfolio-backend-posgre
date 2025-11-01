@@ -1,15 +1,23 @@
 module Api
   module V1
+    # frontSkills API Controller
+    #
+    # @example
+    #   GET /api/v1/front_skills
+    #   => { status: 'SUCCESS', data: [...] }
+    #
+    # @see frontSkill
+    #
     class FrontSkillsController < ApplicationController
       before_action :set_front_skill, only: [:show, :update, :destroy]
-
+      # front_skill一覧を取得
       def index
-        front_skills = FrontSkill.order(created_at: :desc)
+        front_skills = FrontSkills::FetchAllService.call
         render json: { status: 'SUCCESS', data: front_skills }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the front_skill', data: @front_skill }
+        render json: { status: 'SUCCESS', data: @front_skill }
       end
 
       def create

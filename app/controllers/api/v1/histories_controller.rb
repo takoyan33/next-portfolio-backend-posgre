@@ -1,8 +1,16 @@
 module Api
   module V1
+    # HistoriesSkills API Controller
+    #
+    # @example
+    #   GET /api/v1/histories
+    #   => { status: 'SUCCESS', data: [...] }
+    #
+    # @see HistoriesSkill
+    #
     class HistoriesController < ApplicationController
       before_action :set_history, only: [:show, :update, :destroy]
-
+      # histories一覧を取得
       def index
         histories = History.order(created_at: :desc)
         render json: { status: 'SUCCESS', data: histories }

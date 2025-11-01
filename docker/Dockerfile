@@ -19,8 +19,7 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
 # RubyGems を指定バージョンに更新し、依存関係をインストール
-RUN gem update --system ${RUBYGEMS_VERSION} && \
-    bundle install
+RUN bundle install
 
 # アプリケーション全体をコンテナにコピー
 COPY . /myapp

@@ -1,10 +1,18 @@
 module Api
   module V1
+    # otherSkills API Controller
+    #
+    # @example
+    #   GET /api/v1/other_skills
+    #   => { status: 'SUCCESS', data: [...] }
+    #
+    # @see otherSkill
+    #
     class OtherSkillsController < ApplicationController
       before_action :set_other_skill, only: [:show, :update, :destroy]
-
+      # otherSkill一覧を取得
       def index
-        other_skills = OtherSkill.order(created_at: :desc)
+        other_skills = OtherSkills::FetchAllService.call
         render json: { status: 'SUCCESS', data: other_skills }
       end
 

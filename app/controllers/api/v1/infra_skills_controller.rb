@@ -1,15 +1,23 @@
 module Api
   module V1
+    # infraSkills API Controller
+    #
+    # @example
+    #   GET /api/v1/infra_skills
+    #   => { status: 'SUCCESS', data: [...] }
+    #
+    # @see infraSkill
+    #
     class InfraSkillsController < ApplicationController
       before_action :set_infra_skill, only: [:show, :update, :destroy]
-
+      # infraSkill一覧を取得
       def index
-        infra_skills = InfraSkill.order(created_at: :desc)
+        infra_skills = InfraSkills::FetchAllService.call
         render json: { status: 'SUCCESS', data: infra_skills }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the infra_skill', data: @infra_skill }
+        render json: { status: 'SUCCESS', data: @infra_skill }
       end
 
       def create
