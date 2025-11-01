@@ -1,7 +1,7 @@
 module Authenticable
   extend ActiveSupport::Concern
 
-  SECRET_KEY = ENV['JWT_SECRET_KEY'].presence || Rails.application.credentials.jwt_secret_key || 'please_change_me'
+  SECRET_KEY = ENV['JWT_SECRET_KEY'].presence || Rails.application.credentials.jwt_secret_key
 
   def authenticate_request
     token = request.headers['Authorization']&.split(' ')&.last
@@ -20,7 +20,7 @@ module Authenticable
 
   def encode_token(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i
-    JWT.encode(payload, SECRET_KEY)
+    JWT.encode(payload, SECRET_KEY, 'HS256')
   end
 
   def decode_token(token)
