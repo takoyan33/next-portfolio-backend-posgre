@@ -34,6 +34,7 @@ module Api
         render json: { status: 'SUCCESS', message: 'Deleted the portfolio', data: @portfolio }
       end
 
+      #portfolioの更新
       def update
         if @portfolio.update(portfolio_params)
           render json: { status: 'SUCCESS', message: 'Updated the portfolio', data: @portfolio }
