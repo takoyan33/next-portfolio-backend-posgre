@@ -49,7 +49,7 @@ module Api
       end
 
       def back_skill_params
-        params.require(:back_skill).permit(:title)
+        params.require(:back_skill).permit(:name, :rank, :about, :icon)
       end
     end
   end

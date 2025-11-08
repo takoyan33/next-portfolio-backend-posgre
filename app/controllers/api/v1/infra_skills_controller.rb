@@ -49,7 +49,7 @@ module Api
       end
 
       def infra_skill_params
-        params.require(:infra_skill).permit(:title)
+        params.require(:infra_skill).permit( :name, :rank, :about, :icon)
       end
     end
   end

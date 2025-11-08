@@ -49,7 +49,7 @@ module Api
       end
 
       def other_skill_params
-        params.require(:other_skill).permit(:title)
+        params.require(:other_skill).permit(:name, :rank, :about, :icon)
       end
     end
   end
