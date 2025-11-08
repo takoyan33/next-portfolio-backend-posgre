@@ -1,7 +1,7 @@
 module Api
   module V1
     class AuthController < ApplicationController
-      include Authenticable
+      include Authenticate
 
       # POST /api/v1/auth/register
       def register

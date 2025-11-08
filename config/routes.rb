@@ -8,14 +8,14 @@ Rails.application.routes.draw do
       post 'auth/register', to: 'auth#register'
       post 'auth/login', to: 'auth#login'
       resources :posts, only: [:index]
-      resources :histories, only: [:show,:index,:edit, :update]
-      resources :jobs, only: [:show, :index,:edit, :update]
-      resources :licenses, only: [:show, :index,:edit, :update]
+      resources :histories, only: [:show, :index, :update]
+      resources :jobs, only: [:show, :index, :update]
+      resources :licenses, only: [:show, :index, :update]
       resources :portfolios, only: [:show, :index, :edit, :update]
-      resources :front_skills, only: [:show,:index,:edit, :update]
-      resources :back_skills, only: [:show,:index,:edit, :update]
-      resources :infra_skills, only: [:show,:index,:edit, :update]
-      resources :other_skills, only: [:show,:index,:edit, :update]
+      resources :front_skills, only: [:show, :index, :update]
+      resources :back_skills, only: [:show, :index, :update]
+      resources :infra_skills, only: [:show, :index, :update]
+      resources :other_skills, only: [:show, :index, :update]
     end
   end
   root to: proc { [200, {}, ['OK']] }
