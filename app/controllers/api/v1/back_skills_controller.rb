@@ -16,6 +16,7 @@ module Api
         render json: { status: 'SUCCESS', data: back_skills }
       end
 
+      # 個別データを取得
       def show
         render json: { status: 'SUCCESS',  data: @back_skill }
       end
