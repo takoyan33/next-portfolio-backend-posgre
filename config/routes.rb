@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :back_skills, only: [:show,:index,:edit, :update]
       resources :infra_skills, only: [:show,:index,:edit, :update]
       resources :other_skills, only: [:show,:index,:edit, :update]
+      resources :profiles, only: [:show,:index,:edit, :update]
     end
   end
   root to: proc { [200, {}, ['OK']] }

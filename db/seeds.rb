@@ -427,3 +427,18 @@ OtherSkill.create!([
 		"icon": "/images/skill/bitbucket.svg"
 	}
 ])
+
+Profile.create!([
+	{
+		"id": 1,
+		"content": "北海道在住の社会人2年目のエンジニア。
+<br />
+大学在学中に、プログラミングに興味を持ち、HTML/CSSから学習を始めました。
+<br />
+文系大学を卒業後、フロントエンドエンジニアとして、WebサイトやWebシステムの構築をしています。
+<br />
+現在はReactやVueを中心に、更なるフロントエンド技術の向上を目指しています。",
+		"hobby": "ボードゲーム、ギター",
+		"license": "基本情報技術者試験"
+	},
+])
