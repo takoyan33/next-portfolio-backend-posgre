@@ -2,17 +2,65 @@ openapi: 3.0.1
 info:
   title: To You Design API
   version: v1
-  description: API for To You Design.
+  description: To You Design の API です。
 
 paths:
+  /api/v1/auth/register:
+    post:
+      summary: ユーザー新規登録
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        "201":
+          description: ユーザー登録に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "422":
+          description: バリデーションエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/v1/auth/login:
+    post:
+      summary: ログインしてJWTトークンを取得
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        "200":
+          description: ログイン成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: メールアドレスまたはパスワードが不正
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
   /api/v1/histories:
     get:
-      summary: Get all histories
+      summary: 経歴一覧を取得
       tags:
         - Histories
       responses:
         "200":
-          description: A list of histories
+          description: 経歴一覧の取得に成功
           content:
             application/json:
               schema:
@@ -27,12 +75,12 @@ paths:
                       $ref: "#/components/schemas/Histories"
   /api/v1/licenses:
     get:
-      summary: Get all licenses
+      summary: 資格一覧を取得
       tags:
         - Licenses
       responses:
         "200":
-          description: A list of licenses
+          description: 資格一覧の取得に成功
           content:
             application/json:
               schema:
@@ -47,12 +95,12 @@ paths:
                       $ref: "#/components/schemas/Licenses"
   /api/v1/jobs:
     get:
-      summary: Get all jobs
+      summary: 職歴一覧を取得
       tags:
         - Jobs
       responses:
         "200":
-          description: A list of jobs
+          description: 職歴一覧の取得に成功
           content:
             application/json:
               schema:
@@ -67,12 +115,12 @@ paths:
                       $ref: "#/components/schemas/Jobs"
   /api/v1/portfolios:
     get:
-      summary: Get all Portfolios
+      summary: ポートフォリオ一覧を取得
       tags:
         - Portfolios
       responses:
         "200":
-          description: A list of Portfolios
+          description: ポートフォリオ一覧の取得に成功
           content:
             application/json:
               schema:
@@ -87,12 +135,12 @@ paths:
                       $ref: "#/components/schemas/Portfolios"
   /api/v1/front_skills:
     get:
-      summary: Get all Front skills
+      summary: フロントエンドスキル一覧を取得
       tags:
         - FrontSkills
       responses:
         "200":
-          description: A list of Front skills
+          description: フロントエンドスキル一覧の取得に成功
           content:
             application/json:
               schema:
@@ -107,12 +155,12 @@ paths:
                       $ref: "#/components/schemas/FrontSkill"
   /api/v1/back_skills:
     get:
-      summary: Get all back skills
+      summary: バックエンドスキル一覧を取得
       tags:
         - BackSkills
       responses:
         "200":
-          description: A list of back skills
+          description: バックエンドスキル一覧の取得に成功
           content:
             application/json:
               schema:
@@ -127,12 +175,12 @@ paths:
                       $ref: "#/components/schemas/BackSkill"
   /api/v1/infra_skills:
     get:
-      summary: Get all infra skills
+      summary: インフラスキル一覧を取得
       tags:
         - InfraSkills
       responses:
         "200":
-          description: A list of infra skills
+          description: インフラスキル一覧の取得に成功
           content:
             application/json:
               schema:
@@ -147,12 +195,12 @@ paths:
                       $ref: "#/components/schemas/InfraSkill"
   /api/v1/other_skills:
     get:
-      summary: Get all other skills
+      summary: その他スキル一覧を取得
       tags:
         - OtherSkills
       responses:
         "200":
-          description: A list of Other skills
+          description: その他スキル一覧の取得に成功
           content:
             application/json:
               schema:
@@ -167,7 +215,51 @@ paths:
                       $ref: "#/components/schemas/OtherSkill"
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Authorization ヘッダーに Bearer <token> 形式で JWT トークンを設定してください。
   schemas:
+    AuthRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+    AuthUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        email:
+          type: string
+          format: email
+          example: user@example.com
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiJ9.example.jwt
+        user:
+          $ref: "#/components/schemas/AuthUser"
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Not Authorized
     Histories:
       type: object
       properties:
