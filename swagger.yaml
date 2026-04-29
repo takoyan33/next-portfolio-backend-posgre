@@ -29,6 +29,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+
   /api/v1/auth/login:
     post:
       summary: ログインしてJWTトークンを取得
@@ -53,6 +54,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+
+  /api/v1/auth/validate:
+    get:
+      summary: ログイン中トークンの有効性を確認
+      tags:
+        - Auth
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: トークンが有効
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidateTokenResponse"
+        "401":
+          description: トークンが無効
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
   /api/v1/histories:
     get:
       summary: 経歴一覧を取得
@@ -64,15 +87,59 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: SUCCESS
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Histories"
+                $ref: "#/components/schemas/HistoryListResponse"
+    post:
+      summary: 経歴を新規作成
+      tags:
+        - Histories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HistoryInput"
+      responses:
+        "200":
+          description: 経歴の作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HistoryItemResponse"
+
+  /api/v1/histories/{id}:
+    get:
+      summary: 経歴詳細を取得
+      tags:
+        - Histories
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: 経歴詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HistoryDetailResponse"
+    patch:
+      summary: 経歴を更新
+      tags:
+        - Histories
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HistoryInput"
+      responses:
+        "200":
+          description: 経歴の更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageHistoryResponse"
+
   /api/v1/licenses:
     get:
       summary: 資格一覧を取得
@@ -84,15 +151,59 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: SUCCESS
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Licenses"
+                $ref: "#/components/schemas/LicenseListResponse"
+    post:
+      summary: 資格を新規作成
+      tags:
+        - Licenses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LicenseInput"
+      responses:
+        "200":
+          description: 資格の作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LicenseItemResponse"
+
+  /api/v1/licenses/{id}:
+    get:
+      summary: 資格詳細を取得
+      tags:
+        - Licenses
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: 資格詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LicenseItemResponse"
+    patch:
+      summary: 資格を更新
+      tags:
+        - Licenses
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LicenseInput"
+      responses:
+        "200":
+          description: 資格の更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageLicenseResponse"
+
   /api/v1/jobs:
     get:
       summary: 職歴一覧を取得
@@ -104,15 +215,59 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: SUCCESS
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Jobs"
+                $ref: "#/components/schemas/JobListResponse"
+    post:
+      summary: 職歴を新規作成
+      tags:
+        - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JobInput"
+      responses:
+        "200":
+          description: 職歴の作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JobItemResponse"
+
+  /api/v1/jobs/{id}:
+    get:
+      summary: 職歴詳細を取得
+      tags:
+        - Jobs
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: 職歴詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JobItemResponse"
+    patch:
+      summary: 職歴を更新
+      tags:
+        - Jobs
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JobInput"
+      responses:
+        "200":
+          description: 職歴の更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageJobResponse"
+
   /api/v1/portfolios:
     get:
       summary: ポートフォリオ一覧を取得
@@ -124,15 +279,59 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: SUCCESS
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Portfolios"
+                $ref: "#/components/schemas/PortfolioListResponse"
+    post:
+      summary: ポートフォリオを新規作成
+      tags:
+        - Portfolios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortfolioInput"
+      responses:
+        "200":
+          description: ポートフォリオの作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PortfolioItemResponse"
+
+  /api/v1/portfolios/{id}:
+    get:
+      summary: ポートフォリオ詳細を取得
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: ポートフォリオ詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PortfolioItemResponse"
+    patch:
+      summary: ポートフォリオを更新
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortfolioInput"
+      responses:
+        "200":
+          description: ポートフォリオの更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessagePortfolioResponse"
+
   /api/v1/front_skills:
     get:
       summary: フロントエンドスキル一覧を取得
@@ -144,15 +343,59 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: SUCCESS
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/FrontSkill"
+                $ref: "#/components/schemas/FrontSkillListResponse"
+    post:
+      summary: フロントエンドスキルを新規作成
+      tags:
+        - FrontSkills
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "200":
+          description: フロントエンドスキルの作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FrontSkillItemResponse"
+
+  /api/v1/front_skills/{id}:
+    get:
+      summary: フロントエンドスキル詳細を取得
+      tags:
+        - FrontSkills
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: フロントエンドスキル詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FrontSkillItemResponse"
+    patch:
+      summary: フロントエンドスキルを更新
+      tags:
+        - FrontSkills
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "200":
+          description: フロントエンドスキルの更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageFrontSkillResponse"
+
   /api/v1/back_skills:
     get:
       summary: バックエンドスキル一覧を取得
@@ -164,15 +407,59 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: SUCCESS
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/BackSkill"
+                $ref: "#/components/schemas/BackSkillListResponse"
+    post:
+      summary: バックエンドスキルを新規作成
+      tags:
+        - BackSkills
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "200":
+          description: バックエンドスキルの作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BackSkillItemResponse"
+
+  /api/v1/back_skills/{id}:
+    get:
+      summary: バックエンドスキル詳細を取得
+      tags:
+        - BackSkills
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: バックエンドスキル詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BackSkillItemResponse"
+    patch:
+      summary: バックエンドスキルを更新
+      tags:
+        - BackSkills
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "200":
+          description: バックエンドスキルの更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageBackSkillResponse"
+
   /api/v1/infra_skills:
     get:
       summary: インフラスキル一覧を取得
@@ -184,15 +471,59 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: SUCCESS
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/InfraSkill"
+                $ref: "#/components/schemas/InfraSkillListResponse"
+    post:
+      summary: インフラスキルを新規作成
+      tags:
+        - InfraSkills
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "200":
+          description: インフラスキルの作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfraSkillItemResponse"
+
+  /api/v1/infra_skills/{id}:
+    get:
+      summary: インフラスキル詳細を取得
+      tags:
+        - InfraSkills
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: インフラスキル詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfraSkillItemResponse"
+    patch:
+      summary: インフラスキルを更新
+      tags:
+        - InfraSkills
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "200":
+          description: インフラスキルの更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageInfraSkillResponse"
+
   /api/v1/other_skills:
     get:
       summary: その他スキル一覧を取得
@@ -204,15 +535,122 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: SUCCESS
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/OtherSkill"
+                $ref: "#/components/schemas/OtherSkillListResponse"
+    post:
+      summary: その他スキルを新規作成
+      tags:
+        - OtherSkills
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "200":
+          description: その他スキルの作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OtherSkillItemResponse"
+
+  /api/v1/other_skills/{id}:
+    get:
+      summary: その他スキル詳細を取得
+      tags:
+        - OtherSkills
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: その他スキル詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OtherSkillItemResponse"
+    patch:
+      summary: その他スキルを更新
+      tags:
+        - OtherSkills
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "200":
+          description: その他スキルの更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageOtherSkillResponse"
+
+  /api/v1/profiles:
+    get:
+      summary: プロフィール一覧を取得
+      tags:
+        - Profiles
+      responses:
+        "200":
+          description: プロフィール一覧の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileListResponse"
+    post:
+      summary: プロフィールを新規作成
+      tags:
+        - Profiles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileInput"
+      responses:
+        "200":
+          description: プロフィールの作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileItemResponse"
+
+  /api/v1/profiles/{id}:
+    get:
+      summary: プロフィール詳細を取得
+      tags:
+        - Profiles
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: プロフィール詳細の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileItemResponse"
+    patch:
+      summary: プロフィールを更新
+      tags:
+        - Profiles
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileInput"
+      responses:
+        "200":
+          description: プロフィールの更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageProfileResponse"
 
 components:
   securitySchemes:
@@ -221,6 +659,15 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: Authorization ヘッダーに Bearer <token> 形式で JWT トークンを設定してください。
+
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+
   schemas:
     AuthRequest:
       type: object
@@ -236,6 +683,7 @@ components:
           type: string
           format: password
           example: password123
+
     AuthUser:
       type: object
       properties:
@@ -246,6 +694,7 @@ components:
           type: string
           format: email
           example: user@example.com
+
     AuthResponse:
       type: object
       properties:
@@ -254,13 +703,30 @@ components:
           example: eyJhbGciOiJIUzI1NiJ9.example.jwt
         user:
           $ref: "#/components/schemas/AuthUser"
+
+    ValidateTokenResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Token is valid
+        user:
+          $ref: "#/components/schemas/AuthUser"
+
     ErrorResponse:
       type: object
       properties:
         error:
           type: string
           example: Not Authorized
-    Histories:
+        message:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+
+    History:
       type: object
       properties:
         id:
@@ -277,7 +743,96 @@ components:
         updated_at:
           type: string
           format: date-time
-    Portfolios:
+
+    HistoryInput:
+      type: object
+      required:
+        - history
+      properties:
+        history:
+          type: object
+          required:
+            - title
+            - date
+            - body
+          properties:
+            title:
+              type: string
+            date:
+              type: string
+            body:
+              type: string
+
+    License:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        date:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    LicenseInput:
+      type: object
+      required:
+        - license
+      properties:
+        license:
+          type: object
+          required:
+            - title
+            - date
+          properties:
+            title:
+              type: string
+            date:
+              type: string
+
+    Job:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        date:
+          type: string
+        body:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    JobInput:
+      type: object
+      required:
+        - job
+      properties:
+        job:
+          type: object
+          required:
+            - title
+            - date
+            - body
+          properties:
+            title:
+              type: string
+            date:
+              type: string
+            body:
+              type: string
+
+    Portfolio:
       type: object
       properties:
         id:
@@ -357,81 +912,106 @@ components:
         updated_at:
           type: string
           format: date-time
-    Licenses:
+
+    PortfolioInput:
+      type: object
+      required:
+        - portfolio
+      properties:
+        portfolio:
+          type: object
+          required:
+            - name
+            - date
+            - tag
+            - topImg
+            - time
+          properties:
+            name:
+              type: string
+            date:
+              type: string
+            tag:
+              type: array
+              items:
+                type: string
+            topImg:
+              type: string
+            front_url:
+              type: string
+              nullable: true
+            back_url:
+              type: string
+              nullable: true
+            front_github:
+              type: string
+              nullable: true
+            back_github:
+              type: string
+              nullable: true
+            color:
+              type: string
+              nullable: true
+            about:
+              type: string
+              nullable: true
+            aboutImg:
+              type: string
+              nullable: true
+            function:
+              type: string
+              nullable: true
+            functionImg:
+              type: string
+              nullable: true
+            appeal:
+              type: string
+              nullable: true
+            appealImg:
+              type: string
+              nullable: true
+            front_skill:
+              type: array
+              items:
+                type: string
+            back_skill:
+              type: array
+              items:
+                type: string
+            infra_skill:
+              type: array
+              items:
+                type: string
+            time:
+              type: string
+            prev_title:
+              type: string
+              nullable: true
+            prev_article_id:
+              type: string
+              nullable: true
+            next_title:
+              type: string
+              nullable: true
+            next_article_id:
+              type: string
+              nullable: true
+
+    Skill:
       type: object
       properties:
         id:
           type: integer
-        title:
+        name:
           type: string
-        date:
+        rank:
           type: string
-        created_at:
+        tag:
           type: string
-          format: date-time
-        updated_at:
+        about:
           type: string
-          format: date-time
-    Jobs:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        date:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    FrontSkill:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    BackSkill:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    InfraSkill:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    OtherSkill:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
+          nullable: true
+        icon:
           type: string
         created_at:
           type: string
@@ -440,10 +1020,367 @@ components:
           type: string
           format: date-time
 
-    # BackSkillInput:
-    #   type: object
-    #   required:
-    #     - title
-    #   properties:
-    #     title:
-    #       type: string
+    SkillInput:
+      type: object
+      properties:
+        front_skill:
+          $ref: "#/components/schemas/SkillBody"
+        back_skill:
+          $ref: "#/components/schemas/SkillBody"
+        infra_skill:
+          $ref: "#/components/schemas/SkillBody"
+        other_skill:
+          $ref: "#/components/schemas/SkillBody"
+      anyOf:
+        - required: [front_skill]
+        - required: [back_skill]
+        - required: [infra_skill]
+        - required: [other_skill]
+
+    SkillBody:
+      type: object
+      required:
+        - name
+        - rank
+        - tag
+        - icon
+      properties:
+        name:
+          type: string
+        rank:
+          type: string
+        tag:
+          type: string
+        about:
+          type: string
+          nullable: true
+        icon:
+          type: string
+
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
+        hobby:
+          type: string
+        license:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    ProfileInput:
+      type: object
+      required:
+        - profile
+      properties:
+        profile:
+          type: object
+          required:
+            - content
+            - hobby
+            - license
+          properties:
+            content:
+              type: string
+            hobby:
+              type: string
+            license:
+              type: string
+
+    HistoryListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/History"
+
+    HistoryItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/History"
+
+    HistoryDetailResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+          example: Loaded the history
+        data:
+          $ref: "#/components/schemas/History"
+
+    MessageHistoryResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/History"
+
+    LicenseListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/License"
+
+    LicenseItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/License"
+
+    MessageLicenseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/License"
+
+    JobListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Job"
+
+    JobItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/Job"
+
+    MessageJobResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/Job"
+
+    PortfolioListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Portfolio"
+
+    PortfolioItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/Portfolio"
+
+    MessagePortfolioResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/Portfolio"
+
+    FrontSkillListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+
+    FrontSkillItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/Skill"
+
+    MessageFrontSkillResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/Skill"
+
+    BackSkillListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+
+    BackSkillItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/Skill"
+
+    MessageBackSkillResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/Skill"
+
+    InfraSkillListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+
+    InfraSkillItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/Skill"
+
+    MessageInfraSkillResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/Skill"
+
+    OtherSkillListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+
+    OtherSkillItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/Skill"
+
+    MessageOtherSkillResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/Skill"
+
+    ProfileListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Profile"
+
+    ProfileItemResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        data:
+          $ref: "#/components/schemas/Profile"
+
+    MessageProfileResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: SUCCESS
+        message:
+          type: string
+        data:
+          $ref: "#/components/schemas/Profile"

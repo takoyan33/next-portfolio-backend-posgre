@@ -9,7 +9,7 @@ module Api
     # @see jobs
     #
     class JobsController < ApplicationController
-      before_action :set_history, only: [:show, :update, :destroy]
+      before_action :set_job, only: [:show, :update, :destroy]
       # job一覧を取得
       def index
         jobs = Jobs::FetchAllService.call
@@ -21,7 +21,7 @@ module Api
       end
 
       def create
-        job = Job.new(history_params)
+        job = Job.new(job_params)
         if job.save
           render json: { status: 'SUCCESS', data: job }
         else
@@ -35,7 +35,7 @@ module Api
       end
 
       def update
-        if @job.update(history_params)
+        if @job.update(job_params)
           render json: { status: 'SUCCESS', message: 'Updated the job', data: @job }
         else
           render json: { status: 'SUCCESS', message: 'Not updated', data: @job.errors }
@@ -44,12 +44,12 @@ module Api
 
       private
 
-      def set_history
+      def set_job
         @job = Job.find(params[:id])
       end
 
-      def history_params
-        params.require(:job).permit(:title)
+      def job_params
+        params.require(:job).permit(:title, :date, :body)
       end
     end
   end

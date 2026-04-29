@@ -49,7 +49,7 @@ module Api
       end
 
       def history_params
-        params.require(:history).permit(:title)
+        params.require(:history).permit(:title, :date, :body)
       end
     end
   end

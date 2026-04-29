@@ -7,16 +7,17 @@ Rails.application.routes.draw do
     namespace 'v1' do
       post 'auth/register', to: 'auth#register'
       post 'auth/login', to: 'auth#login'
+      get 'auth/validate', to: 'auth#validate'
       resources :posts, only: [:index]
-      resources :histories, only: [:show,:index,:edit, :update]
-      resources :jobs, only: [:show, :index,:edit, :update]
-      resources :licenses, only: [:show, :index,:edit, :update]
-      resources :portfolios, only: [:show, :index, :edit, :update]
-      resources :front_skills, only: [:show,:index,:edit, :update]
-      resources :back_skills, only: [:show,:index,:edit, :update]
-      resources :infra_skills, only: [:show,:index,:edit, :update]
-      resources :other_skills, only: [:show,:index,:edit, :update]
-      resources :profiles, only: [:show,:index,:edit, :update]
+      resources :histories, only: [:show, :index, :create, :update]
+      resources :jobs, only: [:show, :index, :create, :update]
+      resources :licenses, only: [:show, :index, :create, :update]
+      resources :portfolios, only: [:show, :index, :create, :update]
+      resources :front_skills, only: [:show, :index, :create, :update]
+      resources :back_skills, only: [:show, :index, :create, :update]
+      resources :infra_skills, only: [:show, :index, :create, :update]
+      resources :other_skills, only: [:show, :index, :create, :update]
+      resources :profiles, only: [:show, :index, :create, :update]
     end
   end
   root to: proc { [200, {}, ['OK']] }

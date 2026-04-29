@@ -21,7 +21,7 @@ module Api
       end
 
       def create
-        profile = profile.new(profile_params)
+        profile = Profile.new(profile_params)
         if profile.save
           render json: { status: 'SUCCESS', data: profile }
         else
@@ -45,11 +45,11 @@ module Api
       private
 
       def set_profile
-        @profile = profile.find(params[:id])
+        @profile = Profile.find(params[:id])
       end
 
       def profile_params
-        params.require(:profile).permit(:title)
+        params.require(:profile).permit(:content, :hobby, :license)
       end
     end
   end

@@ -49,7 +49,7 @@ module Api
       end
 
       def license_params
-        params.require(:license).permit(:title)
+        params.require(:license).permit(:title, :date)
       end
     end
   end

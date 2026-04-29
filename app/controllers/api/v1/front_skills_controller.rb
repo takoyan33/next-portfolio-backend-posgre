@@ -49,7 +49,7 @@ module Api
       end
 
       def front_skill_params
-        params.require(:front_skill).permit( :name, :rank, :about, :icon)
+        params.require(:front_skill).permit(:name, :rank, :tag, :about, :icon)
       end
     end
   end
