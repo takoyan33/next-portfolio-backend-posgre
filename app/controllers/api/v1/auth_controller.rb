@@ -5,7 +5,7 @@ module Api
 
       before_action :authenticate_request, only: [:validate]
 
-      # POST /api/v1/auth/register
+      # API-001 POST /api/v1/auth/register
       def register
         # Strong Parametersで許可されたパラメータを使ってユーザーを作成
         # create! を使うことで、バリデーションエラー時に例外が発生する（=> 400系レスポンスに繋げやすい）
@@ -13,7 +13,7 @@ module Api
         render_auth_response(user, :created)
       end
 
-      # POST /api/v1/auth/login
+      # API-002 POST /api/v1/auth/login
       def login
         # emailでユーザーを検索（存在しない場合はnil）
         user = User.find_by(email: params[:email])
@@ -29,7 +29,7 @@ module Api
         end
       end
 
-      # GET /api/v1/auth/validate
+      # API-003 GET /api/v1/auth/validate
       def validate
         render json: {
           message: 'Token is valid',

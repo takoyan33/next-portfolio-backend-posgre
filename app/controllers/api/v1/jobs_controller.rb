@@ -1,25 +1,44 @@
 module Api
   module V1
-    # jobs API Controller
+    # API-012 ～ API-015
     #
-    # @example
-    #   GET /api/v1/jobs
-    #   => { status: 'SUCCESS', data: [...] }
+    # Jobs API Controller
     #
-    # @see jobs
+    # API-012
+    # GET /api/v1/jobs
+    # 職歴一覧を取得
     #
+    # API-013
+    # POST /api/v1/jobs
+    # 職歴を新規作成
+    #
+    # API-014
+    # GET /api/v1/jobs/:id
+    # 職歴詳細を取得
+    #
+    # API-015
+    # PATCH /api/v1/jobs/:id
+    # 職歴を更新
+    #
+    # ※ DELETE は設計書未記載
     class JobsController < ApplicationController
       before_action :set_job, only: [:show, :update, :destroy]
-      # job一覧を取得
+
+      # API-012
+      # 職歴一覧を取得
       def index
         jobs = Jobs::FetchAllService.call
         render json: { status: 'SUCCESS', data: jobs }
       end
 
+      # API-014
+      # 職歴詳細を取得
       def show
         render json: { status: 'SUCCESS', data: @job }
       end
 
+      # API-013
+      # 職歴を新規作成
       def create
         job = Job.new(job_params)
         if job.save
@@ -29,11 +48,15 @@ module Api
         end
       end
 
+      # API番号なし（設計書未記載）
+      # 職歴を削除
       def destroy
         @job.destroy
         render json: { status: 'SUCCESS', message: 'Deleted the job', data: @job }
       end
 
+      # API-015
+      # 職歴を更新
       def update
         if @job.update(job_params)
           render json: { status: 'SUCCESS', message: 'Updated the job', data: @job }
