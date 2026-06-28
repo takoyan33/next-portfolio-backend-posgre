@@ -1,25 +1,44 @@
 module Api
   module V1
-    # frontSkills API Controller
+    # API-020 ～ API-023
     #
-    # @example
-    #   GET /api/v1/front_skills
-    #   => { status: 'SUCCESS', data: [...] }
+    # FrontSkills API Controller
     #
-    # @see frontSkill
+    # API-020
+    # GET /api/v1/front_skills
+    # フロントエンドスキル一覧を取得
     #
+    # API-021
+    # POST /api/v1/front_skills
+    # フロントエンドスキルを新規作成
+    #
+    # API-022
+    # GET /api/v1/front_skills/:id
+    # フロントエンドスキル詳細を取得
+    #
+    # API-023
+    # PATCH /api/v1/front_skills/:id
+    # フロントエンドスキルを更新
+    #
+    # ※ DELETE は設計書未記載
     class FrontSkillsController < ApplicationController
       before_action :set_front_skill, only: [:show, :update, :destroy]
-      # front_skill一覧を取得
+
+      # API-020
+      # フロントエンドスキル一覧を取得
       def index
         front_skills = FrontSkills::FetchAllService.call
         render json: { status: 'SUCCESS', data: front_skills }
       end
 
+      # API-022
+      # フロントエンドスキル詳細を取得
       def show
         render json: { status: 'SUCCESS', data: @front_skill }
       end
 
+      # API-021
+      # フロントエンドスキルを新規作成
       def create
         front_skill = FrontSkill.new(front_skill_params)
         if front_skill.save
@@ -29,11 +48,15 @@ module Api
         end
       end
 
+      # API番号なし（設計書未記載）
+      # フロントエンドスキルを削除
       def destroy
         @front_skill.destroy
         render json: { status: 'SUCCESS', message: 'Deleted the front_skill', data: @front_skill }
       end
 
+      # API-023
+      # フロントエンドスキルを更新
       def update
         if @front_skill.update(front_skill_params)
           render json: { status: 'SUCCESS', message: 'Updated the front_skill', data: @front_skill }
